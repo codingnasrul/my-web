@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasrul - Personal Portfolio</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles & Variables */
+        :root {
+            --primary-blue: #007bff; /* A standard blue, adjust if needed */
+            --light-blue: #e0f2ff; /* Lighter blue for subtle accents */
+            --text-dark: #333;
+            --text-light: #666;
+            --background-light: #f8f9fa;
+            --card-background: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Global Box-sizing for easier layout management */
+        html {
+            box-sizing: border-box;
+        }
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll due to slight misalignments */
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px; /* Consistent horizontal padding */
+        }
+
+        section {
+            padding: 80px 20px; /* Top/bottom padding for sections */
+            background-color: var(--card-background);
+            margin-bottom: 20px; /* Space between sections */
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-light); /* Soft shadow for sections */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-blue);
+            margin-top: 0;
+        }
+
+        p {
+            color: var(--text-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-blue);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background-color: #fff;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn .material-icons {
+            margin-left: 8px;
+            font-size: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            padding: 15px 20px; /* Adjusted padding for header */
+            box-shadow: 0 2px 10px var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px; /* Match container width */
+            margin: 0 auto; /* Center navbar content */
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 5px; /* Space for underline effect */
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle, .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: var(--text-dark);
+            display: none; /* Hidden by default on desktop */
+        }
+
+        .theme-toggle {
+            font-size: 1.5em; /* Smaller icon */
+            margin-left: 20px; /* Space from nav links */
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+            padding: 100px 20px;
+            background-color: var(--background-light); /* Match body background */
+            box-shadow: none; /* No shadow for hero */
+            margin-bottom: 0; /* No margin below hero */
+        }
+
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+            width: 150px; /* Set a fixed width for the container */
+            height: 150px; /* Set a fixed height for the container */
+        }
+
+        .profile-picture {
+            width: 100%; /* Fill the container */
+            height: 100%; /* Fill the container */
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fff; /* White border */
+            box-shadow: 0 0 15px var(--shadow-medium); /* Soft shadow */
+        }
+
+        .hero-icons {
+            position: absolute;
+            width: 100%; /* Make icons relative to profile picture container */
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Allow clicks to pass through to elements below */
+        }
+
+        .icon-circle {
+            position: absolute;
+            background-color: var(--primary-blue); /* Changed to primary-blue */
+            color: white; /* Icon color white */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px var(--shadow-medium);
+            transition: transform 0.3s ease, background-color 0.3s ease; /* Added background transition */
+            cursor: pointer;
+            pointer-events: auto; /* Enable clicks on icons */
+        }
+
+        .icon-circle .material-icons {
+            font-size: 20px;
+            color: white; /* Ensure material icons are white */
+        }
+
+        .icon-circle:hover {
+            transform: scale(1.1);
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Adjusted positions for better placement and to avoid overlapping */
+        .icon-circle:nth-child(1) { /* Top Left */
+            top: -10px; /* Adjust as needed */
+            left: -10px; /* Adjust as needed */
+            transform: translate(-50%, -50%); /* Center the icon relative to its top/left */
+        }
+
+        .icon-circle:nth-child(2) { /* Top Right */
+            top: -10px; /* Adjust as needed */
+            right: -10px; /* Adjust as needed */
+            transform: translate(50%, -50%); /* Center the icon relative to its top/right */
+        }
+
+        .icon-circle:nth-child(3) { /* Bottom Left */
+            bottom: -10px; /* Adjust as needed */
+            left: -10px; /* Adjust as needed */
+            transform: translate(-50%, 50%); /* Center the icon relative to its bottom/left */
+        }
+
+        .icon-circle:nth-child(4) { /* Bottom Right */
+            bottom: -10px; /* Adjust as needed */
+            right: -10px; /* Adjust as needed */
+            transform: translate(50%, 50%); /* Center the icon relative to its bottom/right */
+        }
+
+
+        .hero-name {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .hero-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: 1.1em;
+            color: var(--text-light);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* About Me Section */
+        #about {
+            text-align: center;
+        }
+
+        #about h2 {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 1.1em;
+        }
+
+        /* Education Section */
+        #education {
+            width: 100%;
+            padding: 80px 20px;
+        }
+        #education h2 {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 40px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+            align-items: flex-start;
+        }
+
+        .timeline-item-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .timeline-item-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px var(--shadow-light);
+        }
+
+        .timeline-text {
+            flex-grow: 1;
+        }
+
+        .timeline-text h3 {
+            margin-bottom: 5px;
+            color: var(--text-dark);
+            font-size: 1.3em;
+        }
+        .timeline-text p {
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+        .timeline-text .dates {
+            font-size: 0.85em;
+            color: var(--text-light);
+        }
+
+        /* Skills Section */
+        #skills {
+            text-align: center;
+        }
+        #skills h2 {
+            font-size: 2.2em;
+            margin-bottom: 40px;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);;
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .skill-item {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+        .skill-item img {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .skill-item p {
+            margin: 0;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Projects Section */
+        #projects {
+            text-align: center;
+        }
+        #projects h2 {
+            font-size: 2.2em;
+            margin-bottom: 40px;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .project-card {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            overflow: hidden;
+            text-align: left;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Push link to bottom */
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .project-card-content {
+            padding: 20px;
+        }
+        .project-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        .project-card p {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            /* object-fit: cover; */
+            border-radius: 0 0 10px 10px; /* Rounded bottom corners for image */
+            margin-top: 15px; /* Space after description */
+        }
+        .project-link {
+            /* display: flex; */
+            display: none;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-top: auto; /* Push to bottom */
+            padding: 0 20px 20px;
+        }
+        .project-link .material-icons {
+            display: none;
+            font-size: 20px;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+        #contact h2 {
+            font-size: 2.2em;
+            margin-bottom: 40px;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--card-background);
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px var(--shadow-light);
+            width: 100%;
+            justify-content: flex-start; /* Align text to left */
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        .contact-item .material-icons {
+            color: var(--primary-blue);
+            font-size: 24px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9em;
+            box-shadow: 0 -2px 10px var(--shadow-light); /* Shadow on top of footer */
+            margin-top: 20px; /* Space above footer */
+            border-radius: 10px 10px 0 0; /* Rounded top corners */
+        }
+
+        .footer-bottom-text {
+            font-size: 0.85em;
+            color: var(--text-light);
+        }
+        .footer-bottom-text .material-icons {
+            font-size: 1em;
+            vertical-align: middle;
+            color: #e74c3c; /* Red heart */
+            margin: 0 5px;
+        }
+        .footer-social-links {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px; 
+        }
+
+        .footer-social-links a {
+            font-size: 1.8em;
+            color: var(--primary-blue); 
+            transition: color 0.3s ease;
+        }
+
+        .footer-social-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            display: flex; /* Always flex so transitions work, but hidden by opacity/visibility */
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            opacity: 0; /* Hidden by default */
+            visibility: hidden; /* Hidden by default */
+            transform: translateY(20px); /* Start slightly lower */
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            align-items: center;
+            justify-content: center;
+        }
+        #back-to-top.show { /* Class added by JS to show the button */
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #back-to-top:hover {
+            opacity: 0.9;
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            display: flex; /* Always flex so transitions work, but hidden by opacity/visibility */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.98); /* Semi-transparent white */
+            z-index: 1001;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0; /* Hidden by default */
+            visibility: hidden; /* Hidden by default */
+            transition: opacity 0.3s ease, visibility 0.3s ease; /* Added transitions */
+        }
+
+        .mobile-nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2.5em;
+            cursor: pointer;
+            color: var(--text-dark);
+            z-index: 1002;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 25px;
+        }
+
+        .mobile-nav-links a {
+            font-size: 1.8em;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 10px 0;
+            display: block;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hide desktop nav links */
+            }
+            .menu-toggle {
+                display: block; /* Show hamburger menu */
+            }
+            .navbar {
+                justify-content: space-between; /* Space out logo and hamburger */
+            }
+            .logo {
+                font-size: 1.5em; /* Smaller logo on mobile */
+            }
+
+            /* Adjust hero section for mobile */
+            #hero {
+                padding: 60px 20px;
+            }
+            .hero-name {
+                font-size: 2em;
+            }
+            .hero-title {
+                font-size: 1.2em;
+            }
+            .hero-description {
+                font-size: 1em;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .btn {
+                width: 80%; /* Make buttons full width */
+                margin: 0 auto;
+            }
+            .footer-social-links {
+                margin-top: 30px;
+                justify-content: center;
+
+            }
+            .profile-container {
+                margin-bottom: 50px; /* More space for icons */
+                width: 200px; /* Adjust size for mobile */
+                height: 200px;
+            }
+            .icon-circle {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+            .icon-circle:nth-child(1) { /* Top Left */
+                top: -5px; /* Adjust as needed */
+                left: -5px; /* Adjust as needed */
+            }
+
+            .icon-circle:nth-child(2) { /* Top Right */
+                top: -5px; /* Adjust as needed */
+                right: -5px; /* Adjust as needed */
+            }
+
+            .icon-circle:nth-child(3) { /* Bottom Left */
+                bottom: -5px; /* Adjust as needed */
+                left: -5px; /* Adjust as needed */
+            }
+
+            .icon-circle:nth-child(4) { /* Bottom Right */
+                bottom: -5px; /* Adjust as needed */
+                right: -5px; /* Adjust as needed */
+            }
+
+
+            /* Adjust section padding for mobile */
+            section {
+                padding: 50px 15px; /* Reduced horizontal padding for full width feel */
+            }
+            h2 {
+                font-size: 1.8em !important; /* Force smaller size for section titles */
+            }
+
+            /* Education timeline for mobile */
+            .timeline-item {
+                flex-direction: column; /* Stack items vertically */
+                align-items: flex-start;
+            }
+            .timeline-item-left, .timeline-item-right {
+                width: 100%;
+                padding: 15px;
+                margin: 0;
+                box-sizing: border-box; /* Include padding in width */
+            }
+            .timeline-item-left::after, .timeline-item-right::after {
+                display: none; /* Hide triangles */
+            }
+            .timeline-item-content {
+                flex-direction: row; /* Keep image and text side-by-side */
+                align-items: flex-start;
+                margin-left: 30px; /* Space for the dot */
+                text-align: left;
+            }
+            .timeline-item-left .timeline-item-content {
+                flex-direction: row; /* Ensure it's not reversed */
+                text-align: left;
+            }
+
+
+            /* Skills grid for mobile */
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust min width for more columns */
+                gap: 15px;
+            }
+            .skill-item img {
+                width: 50px;
+                height: 50px;
+            }
+            .skill-item p {
+                font-size: 0.9em;
+            }
+
+            /* Projects grid for mobile */
+            .projects-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+                gap: 20px;
+            }
+
+            /* Contact info for mobile */
+            .contact-item {
+                flex-direction: row; /* Keep icon and text in a row */
+                width: auto; /* Adjust width naturally */
+            }
+            .contact-info {
+                max-width: 100%; /* Use full width */
+                padding: 0 15px; /* Consistent padding for contact items */
+                box-sizing: border-box;
+            }
+
+            /* Footer for mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar container">
+            <div class="logo">Nasrul</div>
+            <nav class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Certification</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </nav>
+            <button class="theme-toggle"><span class="material-icons">light_mode</span></button>
+            <button class="menu-toggle"><span class="material-icons">menu</span></button>
+        </div>
+    </header>
+
+    <div class="mobile-nav-overlay">
+        <button class="close-btn"><span class="material-icons">close</span></button>
+        <nav class="mobile-nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Certification</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </nav>
+    </div>
+
+    <section id="hero">
+        <div class="container">
+            <div class="profile-container">
+                <img src="Images/Myself.jpg" alt="Profile Picture" class="profile-picture">
+                <div class="hero-icons">
+                    <div class="icon-circle"><span class="material-icons">code</span></div>
+                    <div class="icon-circle"><span class="material-icons">web</span></div>
+                    <div class="icon-circle"><span class="material-icons">cloud</span></div>
+                    <div class="icon-circle"><span class="material-icons">stars</span></div>
+                </div>
+            </div>
+            <h1 class="hero-name">Hi, I'm Nasrul</h1>
+            <h2 class="hero-title">UI Designer</h2>
+            <p class="hero-description">Enjoy programming, design, and data insights.<br> The design being my primary passion.</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn btn-secondary">Learn More <span class="material-icons">arrow_forward</span></a>
+                <a href="CV-MUHAMAD NASRULLOH.pdf" download class="btn btn-primary">Download CV <span class="material-icons">download</span></a>
+            </div>
+            <!-- Social Links -->
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Nasrul is an enthusiastic IT student who started his journey in university. He's passionate about learning and dedicated to mastering new concepts from scratch, always eager to expand his skills in the evolving world of technology.</p>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="timeline">
+                <div class="timeline-item timeline-item-left">
+                    <div class="timeline-item-content">
+                        <img src="Images/TelU-logo.png" alt="University Logo" class="timeline-item-img">
+                        <div class="timeline-text">
+                            <h3>B.E. in Computer Science</h3>
+                            <p>Telkom University</p>
+                            <span class="dates">2023-2027</span>
+                            <p>Learning about programming languages, software development, data structures, algorithms and database management. Beyond my university studies, I actively enhance my knowledge in relevant subjects through free online courses and bootcamps.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Timeline right diapus -->
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <img src="Images/C++.jpg" alt="C++ Icon">
+                    <p>C++</p>
+                </div>
+                <div class="skill-item">
+                    <img src="Images/Golang.png" alt="Golang Icon">
+                    <p>Golang</p>
+                </div>
+                <div class="skill-item">
+                    <img src="Images/Java.png" alt="Java Icon">
+                    <p>Java</p>
+                </div>
+                <div class="skill-item">
+                    <img src="Images/Python.jpg" alt="Python Icon">
+                    <p>Python</p>
+                </div>
+                <div class="skill-item">
+                    <img src="Images/SQL.png" alt="SQL Icon">
+                    <p>SQL</p>
+                </div>
+                <div class="skill-item">
+                    <img src="Images/HTML.png" alt="HTML Icon">
+                    <p>HTML</p>
+                </div>
+                <div class="skill-item">
+                    <img src="Images/Css.png" alt="CSS Icon">
+                    <p>CSS</p>
+                </div>
+                <div class="skill-item">
+                    <img src="Images/JavaScript.jpg" alt="JavaScript Icon">
+                    <p>JavaScript</p>
+                </div>
+                <div class="skill-item">
+                    <img src="Images/Cloud.jpg" alt="Cloud Icon">
+                    <p>Cloud</p>
+                </div>
+                <div class="skill-item">
+                    <img src="Images/Figma.jpg" alt="Figma Icon">
+                    <p>Figma</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>All Certification</h2>
+            <p>Check out my new certification here..</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3>Code Generations and Optimization</h3>
+                        <p>May 2025 — <strong>IBM SKILLS BUILD</strong></p>
+                        <img src="Images/Code Generations.png" alt="Project 1 Image">
+                        <a href="#" class="project-link">View Project <span class="material-icons">launch</span></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3>AI Practice for Productivity</h3>
+                        <p>May 2025 — <strong>DICODING INDONESIA</strong></p>
+                        <img src="Images/AI Productivity.png" alt="Project 2 Image">
+                        <a href="#" class="project-link">View Project <span class="material-icons">launch</span></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3>Fundamental of Cloud Computing</h3>
+                        <p>May 2025 — <strong>ALIBABA CLOUD</strong></p>
+                        <img src="Images/Fundamental Cloud.png" alt="Project 3 Image">
+                        <a href="#" class="project-link">View Project <span class="material-icons">launch</span></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3>Start With Python</h3>
+                        <p>March 2025 — <strong>DICODING INDONESIA</strong></p>
+                        <img src="Images/Start Python.png" alt="Project 3 Image">
+                        <a href="#" class="project-link">View Project <span class="material-icons">launch</span></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3>Basic Data Science</h3>
+                        <p>March 2025 — <strong>DICODING INDONESIA</strong></p>
+                        <img src="Images/Basic Data.png" alt="Project 3 Image">
+                        <a href="#" class="project-link">View Project <span class="material-icons">launch</span></a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3>Basic SQL</h3>
+                        <p>March 2025 — <strong>DICODING INDONESIA</strong></p>
+                        <img src="Images/Basic SQL.png" alt="Project 3 Image">
+                        <a href="#" class="project-link">View Project <span class="material-icons">launch</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="material-icons">place</span>
+                    <span>Purwokerto, Indonesia</span>
+                </div>
+                <div class="contact-item">
+                    <span class="material-icons">email</span>
+                    <span>mnasrulloh24.official@gmail.com</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-social-links">
+                <a href="https://instagram.com/naszrlee" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com/in/mhnasrulloh" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/codingnasrul" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+
+        <div class="footer-bottom-text">
+            Made with Nasrul <span class="material-icons">favorite</span> – &copy; 2025 All Rights Reserved 
+        </div>
+    </footer>
+
+    <button id="back-to-top" title="Back to top">
+        <span class="material-icons">arrow_upward</span>
+    </button>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+                if (mobileNavOverlay.classList.contains('open')) {
+                    mobileNavOverlay.classList.remove('open');
+                }
+            });
+        });
+
+        // Back to Top button logic
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+                backToTopButton.classList.add('show'); // Use class to show/hide
+            } else {
+                backToTopButton.classList.remove('show'); // Use class to show/hide
+            }
+        });
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Mobile Navigation Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const closeBtn = document.querySelector('.close-btn');
+        const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            mobileNavOverlay.classList.add('open');
+        });
+        closeBtn.addEventListener('click', () => {
+            mobileNavOverlay.classList.remove('open');
+        });
+
+        // Also close mobile nav when a link inside it is clicked
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNavOverlay.classList.remove('open');
+            });
+        });
+
+
+        // Theme Toggle (basic example - not fully implemented as per image, just a toggle button)
+        const themeToggle = document.querySelector('.theme-toggle');
+        if (themeToggle) { // Check if themeToggle exists to prevent error if removed
+            themeToggle.addEventListener('click', () => {
+                // Placeholder for actual theme logic
+                // You would typically add/remove a class to the body/html element
+                // e.g., document.body.classList.toggle('dark-mode');
+                alert('Theme toggle functionality would be implemented here!');
+            });
+        }
+    </script>
+</body>
+</html>
