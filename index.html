@@ -201,67 +201,6 @@
             box-shadow: 0 0 15px var(--shadow-medium); /* Soft shadow */
         }
 
-        .hero-icons {
-            position: absolute;
-            width: 100%; /* Make icons relative to profile picture container */
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none; /* Allow clicks to pass through to elements below */
-        }
-
-        .icon-circle {
-            position: absolute;
-            background-color: var(--primary-blue); /* Changed to primary-blue */
-            color: white; /* Icon color white */
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px var(--shadow-medium);
-            transition: transform 0.3s ease, background-color 0.3s ease; /* Added background transition */
-            cursor: pointer;
-            pointer-events: auto; /* Enable clicks on icons */
-        }
-
-        .icon-circle .material-icons {
-            font-size: 20px;
-            color: white; /* Ensure material icons are white */
-        }
-
-        .icon-circle:hover {
-            transform: scale(1.1);
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-
-        /* Adjusted positions for better placement and to avoid overlapping */
-        .icon-circle:nth-child(1) { /* Top Left */
-            top: -10px; /* Adjust as needed */
-            left: -10px; /* Adjust as needed */
-            transform: translate(-50%, -50%); /* Center the icon relative to its top/left */
-        }
-
-        .icon-circle:nth-child(2) { /* Top Right */
-            top: -10px; /* Adjust as needed */
-            right: -10px; /* Adjust as needed */
-            transform: translate(50%, -50%); /* Center the icon relative to its top/right */
-        }
-
-        .icon-circle:nth-child(3) { /* Bottom Left */
-            bottom: -10px; /* Adjust as needed */
-            left: -10px; /* Adjust as needed */
-            transform: translate(-50%, 50%); /* Center the icon relative to its bottom/left */
-        }
-
-        .icon-circle:nth-child(4) { /* Bottom Right */
-            bottom: -10px; /* Adjust as needed */
-            right: -10px; /* Adjust as needed */
-            transform: translate(50%, 50%); /* Center the icon relative to its bottom/right */
-        }
-
-
         .hero-name {
             font-size: 2.5em;
             font-weight: 700;
@@ -681,31 +620,6 @@
                 width: 200px; /* Adjust size for mobile */
                 height: 200px;
             }
-            .icon-circle {
-                width: 35px;
-                height: 35px;
-                font-size: 18px;
-            }
-            .icon-circle:nth-child(1) { /* Top Left */
-                top: -5px; /* Adjust as needed */
-                left: -5px; /* Adjust as needed */
-            }
-
-            .icon-circle:nth-child(2) { /* Top Right */
-                top: -5px; /* Adjust as needed */
-                right: -5px; /* Adjust as needed */
-            }
-
-            .icon-circle:nth-child(3) { /* Bottom Left */
-                bottom: -5px; /* Adjust as needed */
-                left: -5px; /* Adjust as needed */
-            }
-
-            .icon-circle:nth-child(4) { /* Bottom Right */
-                bottom: -5px; /* Adjust as needed */
-                right: -5px; /* Adjust as needed */
-            }
-
 
             /* Adjust section padding for mobile */
             section {
@@ -807,12 +721,6 @@
         <div class="container">
             <div class="profile-container">
                 <img src="Images/Myself.jpg" alt="Profile Picture" class="profile-picture">
-                <div class="hero-icons">
-                    <div class="icon-circle"><span class="material-icons">code</span></div>
-                    <div class="icon-circle"><span class="material-icons">web</span></div>
-                    <div class="icon-circle"><span class="material-icons">cloud</span></div>
-                    <div class="icon-circle"><span class="material-icons">stars</span></div>
-                </div>
             </div>
             <h1 class="hero-name">Hi, I'm Nasrul</h1>
             <h2 class="hero-title">UI Designer</h2>
